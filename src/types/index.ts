@@ -3,7 +3,7 @@ export interface Service {
   icon: string;
 }
 
-export interface Experience {
+export interface WorkExperience {
   title: string;
   company: string;
   companyDetails: string;
@@ -63,7 +63,7 @@ export interface Profile {
   },
   services: Service[];
   languages: Language[];
-  workExperience: Experience[];
+  workExperience: WorkExperience[];
   skills: Skill[];
   educationHistory: Education[];
   certifications: Certification[];

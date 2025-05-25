@@ -1,14 +1,12 @@
 'use client';
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import moment from "moment";
 import {
   EnvelopeIcon,
   PhoneIcon,
   MapPinIcon,
   LanguageIcon
 } from '@heroicons/react/24/solid';
-import WorkExperience from "@/components/work-experience";
 import Skills from "@/components/skills";
 import {
   Accordion,
@@ -18,6 +16,9 @@ import {
 } from "@/components/ui/accordion";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Profile } from "@/types";
+import CertificationCard from "@/components/certification-card";
+import EducationCard from "@/components/education-card";
+import WorkExperienceCard from "@/components/work-experience";
 
 export default function Home() {
 
@@ -69,17 +70,6 @@ export default function Home() {
                   <p className="text-md">{profile.location}</p>
                 </div>
               </div>
-
-              {/* download CV */}
-              {/* <div className="flex items-center justify-center gap-4 mb-12 w-full">
-                <button
-                  className="flex justify-center gap-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
-                  onClick={() => alert('Download CV')}
-                >
-                  <ArrowDownTrayIcon className="size-6 mr-2" />
-                  <span className="text-xl">Download CV</span>
-                </button>
-              </div> */}
 
               {/* socials */}
               <div className="flex items-start gap-4 mb-12 w-full">
@@ -156,36 +146,8 @@ export default function Home() {
                         <h1 className="font-bold text-2xl">Certifications</h1>
                       </AccordionTrigger>
                       <AccordionContent>
-                        {profile.certifications.map((certification, index) => (
-                          <div className="w-full bg-gray-800 rounded-xl p-4 shadow-lg mb-4" key={`certification-${index}`}>
-                            <div className="grid grid-cols-12 gap-4 mb-2">
-                              <div className="col-span-1">
-                                <Image
-                                  className="mr-4"
-                                  src={certification.issuerLogo}
-                                  alt={certification.issuer}
-                                  width={50}
-                                  height={50}
-                                />
-                              </div>
-                              <div className="col-span-10">
-                                <p className="font-bold text-lg">{certification.name}</p>
-                                <p className="text-sm italic">{certification.issuer}</p>
-                                <p className="text-sm">Issued on: {moment(certification.issueDate).format('MMM yyyy')}</p>
-                                {certification.expirationDate && (
-                                  <p className="text-sm">Expires on: {moment(certification.expirationDate).format('MMM yyyy')}</p>
-                                )}
-                                <a
-                                  href={certification.credentialUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-blue-500 hover:underline"
-                                >
-                                  View Credential
-                                </a>
-                              </div>
-                            </div>
-                          </div>
+                        {profile.certifications.map((cert, index) => (
+                          <CertificationCard certification={cert} key={`certification-${index}`} />
                         ))}
                       </AccordionContent>
                     </AccordionItem>
@@ -198,28 +160,10 @@ export default function Home() {
                     </AccordionTrigger>
                     <AccordionContent>
                       {profile.educationHistory.map((education, index) => (
-                        <div className="w-full bg-gray-800 rounded-xl p-4 shadow-lg mb-4" key={`education-${index}`}>
-                          <div className="grid grid-cols-12 gap-4 mb-2">
-                            <div className="col-span-1">
-                              <Image
-                                className="mr-4"
-                                src={education.institutionLogo}
-                                alt={education.institution}
-                                width={50}
-                                height={50}
-                              />
-                            </div>
-                            <div className="col-span-10">
-                              <p className="font-bold text-lg">{education.degree}</p>
-                              <p className="text-sm italic">{education.institution}</p>
-                              <p className="text-sm">From: {moment(education.startDate).format('MMM yyyy')}</p>
-                              {education.endDate && (
-                                <p className="text-sm">To: {moment(education.endDate).format('MMM yyyy')}</p>
-                              )}
-                              <p className="text-sm">{education.description}</p>
-                            </div>
-                          </div>
-                        </div>
+                        <EducationCard
+                          education={education}
+                          key={`education-${index}`}
+                        />
                       ))}
                     </AccordionContent>
                   </AccordionItem>
@@ -231,17 +175,9 @@ export default function Home() {
                     </AccordionTrigger>
                     <AccordionContent>
                       {profile.workExperience.map((work, index) => (
-                        <WorkExperience
+                        <WorkExperienceCard
+                          workExperience={work}
                           key={`work-${index}`}
-                          title={work.title}
-                          company={work.company}
-                          companyDetails={work.companyDetails}
-                          companyLogoUrl={work.companyLogoUrl}
-                          location={work.location}
-                          startDate={work.startDate}
-                          endDate={work.endDate}
-                          description={work.description}
-                          type={work.type}
                         />
                       ))}
                     </AccordionContent>
