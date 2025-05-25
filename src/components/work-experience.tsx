@@ -3,7 +3,9 @@ import { Badge } from '@/components/ui/badge';
 import moment from 'moment';
 import Image from 'next/image';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
-import { InformationCircleIcon, CalendarIcon } from '@heroicons/react/24/solid';
+import { CalendarIcon } from '@heroicons/react/24/solid';
+import { InformationCircleIcon } from '@heroicons/react/24/outline';
+import { CircleCheckBig } from "lucide-react";
 
 function WorkExperience({
   title,
@@ -30,16 +32,16 @@ function WorkExperience({
         </div>
         <div className='col-span-11'>
           <div className='flex justify-between w-full'>
-            <div className="flex flex-col mb-4">
+            <div className="flex flex-col mb-2">
               <span className="font-normal text-lg">{title}</span>
-              <span className="font-normal text-md text-gray-300 flex gap-2">
+              <span className="font-normal text-md text-gray-300 flex items-center gap-2">
                 {company}{' '}
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <InformationCircleIcon className="size-6 mr-4 cursor-pointer" color='white' />
+                    <InformationCircleIcon className="size-4 mr-4 cursor-pointer" color='white' />
                   </TooltipTrigger>
-                  <TooltipContent>
-                    <span>{companyDetails}</span>
+                  <TooltipContent className='bg-gray-600 rounded-full text-white'>
+                    <span className=''>{companyDetails}</span>
                   </TooltipContent>
                 </Tooltip>
               </span>
@@ -54,8 +56,20 @@ function WorkExperience({
             </div>
           </div>
           <span className='w-full'>
-            {description}
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but als
+            {Array.isArray(description) ? (
+              description.map((desc, index) => (
+                <div className='flex items-center mb-1' key={`work-desc-${index}`}>
+                  <CircleCheckBig className="h-4 w-4 mr-2" />
+                  <p className="text-gray-400 italic">
+                    {desc}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-400 mb-2 italic">
+                {description}
+              </p>
+            )}
           </span>
         </div>
       </div>
@@ -71,7 +85,7 @@ interface WorkExperienceProps {
   location: string;
   startDate: string;
   endDate: string | null;
-  description: string;
+  description: string | string[];
   type: 'FULL_TIME' | 'PART_TIME' | 'CONTRACT' | 'INTERNSHIP';
 }
 
@@ -80,6 +94,6 @@ const workTypePretty: Record<WorkExperienceProps['type'], string> = {
   'PART_TIME': 'Part Time',
   'CONTRACT': 'Contract',
   'INTERNSHIP': 'Internship',
-}
+};
 
 export default WorkExperience;

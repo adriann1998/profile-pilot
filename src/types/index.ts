@@ -1,8 +1,6 @@
-import { ReactElement } from "react";
-
 export interface Service {
   name: string;
-  icon: ReactElement;
+  icon: string;
 }
 
 export interface Experience {
@@ -13,7 +11,7 @@ export interface Experience {
   location: string;
   startDate: string;
   endDate: string | null;
-  description: string;
+  description: string | string[];
   type: 'FULL_TIME' | 'PART_TIME' | 'CONTRACT' | 'INTERNSHIP';
 }
 
@@ -28,22 +26,45 @@ export interface Language {
   level: 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED' | 'NATIVE';
 }
 
+export interface Certification {
+  name: string;
+  issuer: string;
+  issuerLogo: string;
+  issueDate: string;
+  expirationDate: string | null;
+  credentialUrl: string;
+}
+
+export interface Education {
+  degree: string;
+  institution: string;
+  institutionLogo: string;
+  startDate: string;
+  endDate: string | null;
+  description: string;
+  gpa: number | null;
+  location: string;
+  type: 'HIGH_SCHOOL' | 'ASSOCIATE' | 'BACHELOR' | 'MASTER' | 'DOCTORATE';
+}
+
 export interface Profile {
-  firstName: string; 
-  lastName: string; 
+  firstName: string;
+  lastName: string;
   jobTitle: string;
-  aboutMe: string; 
-  email: string; 
-  phone: string; 
+  aboutMe: string;
+  email: string;
+  phone: string;
   location: string;
   imageProfileUrl: string;
-  imageAlt: string; 
+  imageAlt: string;
   socials: {
     github: string;
-    linkedIn: string; 
+    linkedIn: string;
   },
   services: Service[];
   languages: Language[];
   workExperience: Experience[];
-  skills: Skill[]
+  skills: Skill[];
+  educationHistory: Education[];
+  certifications: Certification[];
 }
