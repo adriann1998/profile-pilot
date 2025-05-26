@@ -11,4 +11,6 @@ const nextConfig: NextConfig = {
   },
 };
 
+nextConfig.output = 'standalone';
+
 export default nextConfig;
