@@ -1,5 +1,7 @@
+export type ServiceName = 'Front-end' | 'Back-end' | 'Database' | 'CI/CD Pipeline' | 'Server'
+
 export interface Service {
-  name: string;
+  name: ServiceName;
   icon: string;
 }
 
@@ -19,6 +21,7 @@ export interface Skill {
   name: string;
   icon: string;
   level: number;
+  relatedService: ServiceName[];
 }
 
 export interface Language {

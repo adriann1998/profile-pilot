@@ -15,11 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Adrian Angkajaya  | Software Engineer",
-  metadataBase: new URL("https://adrianangkajaya.com"),
+  title: "Adrian Angkajaya | Full Stack Developer",
+  metadataBase: new URL("https://adrianangkajaya.com"), // TODO: confirm URL
   openGraph: {
-    title: "Adrian Angkajaya  | Software Engineer",
-    description: "Adrian Angkajaya is a Software Engineer with a passion for building scalable and efficient web applications.",
+    title: "Adrian Angkajaya | Full Stack Developer",
+    description: "Adrian Angkajaya is a Full Stack Developer with a passion for building scalable and efficient web applications.",
     url: "https://adrianangkajaya.com",
     siteName: "Adrian Angkajaya",
     images: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "https://adrianangkajaya.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Adrian Angkajaya | Software Engineer",
+        alt: "Adrian Angkajaya | Full Stack Developer",
       },
     ],
     locale: "en_US",
@@ -47,7 +47,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ErrorBoundary>
-          <TooltipProvider>
+          <TooltipProvider delayDuration={200}>
             {children}
           </TooltipProvider>
         </ErrorBoundary>
