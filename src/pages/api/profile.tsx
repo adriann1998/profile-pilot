@@ -191,16 +191,22 @@ export const profile: Profile = {
       relatedService: ['CI/CD Pipeline', 'Server'],
     },
     {
-      name: 'PHP',
-      icon: '/static/images/php-icon.svg',
-      level: 40,
-      relatedService: ['Back-end', 'Front-end'],
+      name: 'Kafka',
+      icon: '/static/images/kafka-icon.svg',
+      level: 50,
+      relatedService: ['Back-end'],
     },
     {
       name: 'Pyton',
       icon: '/static/images/python-icon.svg',
       level: 50,
       relatedService: ['Back-end'],
+    },
+    {
+      name: 'PHP',
+      icon: '/static/images/php-icon.svg',
+      level: 40,
+      relatedService: ['Back-end', 'Front-end'],
     },
   ],
   certifications: [
